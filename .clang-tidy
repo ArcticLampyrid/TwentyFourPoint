@@ -1,0 +1,4 @@
+Checks: "clang-diagnostic-*,clang-analyzer-*,modernize-*,llvm-namespace-comment,llvm-include-order,-modernize-use-trailing-return-type,-modernize-avoid-c-arrays"
+FormatStyle: file
+HeaderFilterRegex: ".*"
+WarningsAsErrors: true

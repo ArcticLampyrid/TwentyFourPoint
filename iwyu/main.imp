@@ -1,0 +1,4 @@
+[
+    { "ref": "qt6_6.imp" },
+    { "include": ["<bits/std_abs.h>", "private", "<math.h>", "public"] }
+]
