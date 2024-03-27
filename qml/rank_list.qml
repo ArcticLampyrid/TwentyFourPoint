@@ -67,7 +67,7 @@ Page {
         opacity: 0.9
         width: 80
         height: 40
-        text: "返回"
+        text: qsTr("Back")
         onClicked: {
             ViewUIController.pop();
         }

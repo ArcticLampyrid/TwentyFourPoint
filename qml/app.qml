@@ -9,7 +9,7 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
-    title: "24 点小游戏"
+    title: qsTr("24-Point Game")
 
     Item {
         anchors.fill: parent

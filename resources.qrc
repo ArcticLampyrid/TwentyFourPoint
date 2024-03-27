@@ -54,5 +54,6 @@
         <file>resources/cards/3/13.png</file>
         <file>resources/background.jpg</file>
         <file>resources/rule.txt</file>
+        <file>resources/rule_zh_CN.txt</file>
     </qresource>
 </RCC>

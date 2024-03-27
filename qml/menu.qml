@@ -11,7 +11,7 @@ Page {
             opacity: 0.9
             width: 160
             height: 80
-            text: "开始游戏"
+            text: qsTr("Start")
             onClicked: {
                 MenuUIController.start();
             }
@@ -21,7 +21,7 @@ Page {
             opacity: 0.9
             width: 160
             height: 80
-            text: "查看排行"
+            text: qsTr("Rank")
             onClicked: {
                 MenuUIController.view_rank_list();
             }
@@ -31,7 +31,7 @@ Page {
             opacity: 0.9
             width: 160
             height: 80
-            text: "查看规则"
+            text: qsTr("Rule")
             onClicked: {
                 MenuUIController.view_rule();
             }
@@ -41,7 +41,7 @@ Page {
             opacity: 0.9
             width: 160
             height: 80
-            text: "退出游戏"
+            text: qsTr("Quit")
             onClicked: {
                 MenuUIController.quit_game();
             }

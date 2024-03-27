@@ -35,7 +35,7 @@ Page {
         Text {
             id: title_bar
 
-            text: "尊敬的玩家『" + GameUIController.nickname + "』，您正在游玩『" + ["简单模式", "中等模式", "困难模式"][GameUIController.difficulty] + "』"
+            text: qsTr("Dear player '%1', you are playing '%2'").arg(GameUIController.nickname).arg([qsTr("Easy Mode"), qsTr("Medium Mode"), qsTr("Hard Mode"), qsTr("Infinite Mode")][GameUIController.difficulty])
         }
 
         RowLayout {
@@ -47,7 +47,7 @@ Page {
 
                 height: 30
                 verticalAlignment: Text.AlignVCenter
-                text: "剩余时间："
+                text: qsTr("Time elapsed: ")
             }
 
             Text {
@@ -67,7 +67,7 @@ Page {
                 height: 30
                 Layout.alignment: Qt.AlignRight
                 verticalAlignment: Text.AlignVCenter
-                text: "当前得分：" + GameUIController.score
+                text: qsTr("Current score: %1").arg(GameUIController.score)
             }
 
         }
@@ -111,7 +111,7 @@ Page {
 
                 opacity: 0.8
                 Layout.fillWidth: true
-                placeholderText: "你的答案"
+                placeholderText: qsTr("Your answer")
                 Keys.onReturnPressed: submit_answer_button.onClicked()
                 Keys.onEnterPressed: submit_answer_button.onClicked()
                 font.pixelSize: 20
@@ -124,7 +124,7 @@ Page {
                 Layout.alignment: Qt.AlignRight
                 Layout.fillHeight: true
                 implicitWidth: 60
-                text: "提交"
+                text: qsTr("Submit")
                 onClicked: {
                     if (!submit_answer_button.enabled)
                         return ;
@@ -142,7 +142,7 @@ Page {
             opacity: 0.9
             width: 60
             height: 30
-            text: "返回"
+            text: qsTr("Back")
             onClicked: {
                 GameUIController.finish_game();
                 game_finished_dialog.close();
@@ -165,7 +165,7 @@ Page {
 
     Connections {
         function onTimeout() {
-            show_result("时间到！");
+            show_result(qsTr("Time's up!"));
             let not_finished = GameUIController.new_problem();
             submit_answer_button.enabled = not_finished;
         }
@@ -175,7 +175,7 @@ Page {
 
     Connections {
         function onAnswerAccepted() {
-            show_result("答案正确！");
+            show_result(qsTr("Answer accepted!"));
             let not_finished = GameUIController.new_problem();
             submit_answer_button.enabled = not_finished;
         }
@@ -185,7 +185,7 @@ Page {
 
     Connections {
         function onAnswerRejected() {
-            show_result("答案错误！");
+            show_result(qsTr("Answer rejected!"));
             let not_finished = GameUIController.new_problem();
             submit_answer_button.enabled = not_finished;
         }
@@ -223,13 +223,13 @@ Page {
             width: parent ? parent.width : 100
 
             Label {
-                text: "游戏结束，总得分：" + GameUIController.score
+                text: qsTr("Game finished, your score: %1!").arg(GameUIController.score)
                 Layout.columnSpan: 2
                 Layout.fillWidth: true
             }
 
             Label {
-                text: "想要再来一局吗？"
+                text: qsTr("Do you want another round?")
                 Layout.columnSpan: 2
                 Layout.fillWidth: true
             }
@@ -238,14 +238,14 @@ Page {
                 Layout.alignment: Qt.AlignRight
 
                 Button {
-                    text: "再来一局"
+                    text: qsTr("One more round")
                     onClicked: {
                         game_finished_dialog.accept();
                     }
                 }
 
                 Button {
-                    text: "返回主菜单"
+                    text: qsTr("Back to main")
                     onClicked: {
                         game_finished_dialog.reject();
                     }

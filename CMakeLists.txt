@@ -6,7 +6,7 @@ if (POLICY CMP0141)
 endif()
 
 project(twenty_four_point VERSION 0.1)
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools)
 qt_standard_project_setup()
 set(CMAKE_AUTORCC ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/$<CONFIG>")
@@ -44,6 +44,11 @@ qt_add_qml_module(twenty_four_point
         "qml/start_game.qml"
         "qml/game.qml"
         "qml/rank_list.qml")
+qt_add_translations(twenty_four_point
+    RESOURCE_PREFIX /twenty_four_point/qml/i18n
+    TS_FILES
+        i18n/qml_zh_CN.ts
+)
 
 if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
     get_target_property(_sources twenty_four_point SOURCES)

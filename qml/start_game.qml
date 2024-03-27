@@ -12,7 +12,7 @@ Page {
 
             opacity: 0.8
             width: parent.width
-            placeholderText: "你的名字"
+            placeholderText: qsTr("Your nickname")
             text: ""
             Component.onCompleted: {
                 nickname.text = GameUIController.random_nickname();
@@ -28,16 +28,16 @@ Page {
             width: parent.width
             model: [{
                 "value": 0,
-                "text": "难度：简单"
+                "text": qsTr("Easy Mode")
             }, {
                 "value": 1,
-                "text": "难度：中等"
+                "text": qsTr("Normal Mode")
             }, {
                 "value": 2,
-                "text": "难度：困难"
+                "text": qsTr("Hard Mode")
             }, {
                 "value": 3,
-                "text": "难度：无尽"
+                "text": qsTr("Infinite Mode")
             }]
 
             delegate: ItemDelegate {
@@ -55,7 +55,7 @@ Page {
                 opacity: 0.9
                 width: 60
                 height: 30
-                text: "返回"
+                text: qsTr("Back")
                 onClicked: {
                     ViewUIController.pop();
                 }
@@ -65,7 +65,7 @@ Page {
                 opacity: 0.9
                 width: 60
                 height: 30
-                text: "确定"
+                text: qsTr("OK")
                 onClicked: {
                     GameUIController.start_game(nickname.text, difficulty.currentValue);
                 }

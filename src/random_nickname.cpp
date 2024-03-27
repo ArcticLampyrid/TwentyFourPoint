@@ -1,3 +1,4 @@
+#include <QLocale>
 #include <random>
 #include <random_nickname.h>
 
@@ -61,6 +62,10 @@ static QString noun[] = {
 
 QString random_nickname()
 {
+    if (QLocale::system().name() != "zh_CN")
+    {
+        return {};
+    }
     QString nickname;
     std::random_device rd;
     std::mt19937 gen(rd());
