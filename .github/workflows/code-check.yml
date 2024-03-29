@@ -1,0 +1,50 @@
+name: Code Check
+on: 
+  - push
+  - pull_request
+jobs:
+  format-code:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:
+      - name: Prepare environment
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm clang git qt5-declarative
+      - uses: actions/checkout@v4
+      - name: Format code
+        run: |
+          qmlformat -i qml/*.qml
+          clang-format -i -style=file include/*.h
+          clang-format -i -style=file src/*.cpp
+      - name: Check Diff
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git diff --exit-code
+
+  check-code:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:
+      - name: Prepare environment
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm clang cmake git ninja qt6-declarative qt6-tools 
+
+          useradd build -m
+          passwd -d build
+          printf 'build ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+
+          git clone https://aur.archlinux.org/include-what-you-use.git
+          chown -R build:build include-what-you-use
+          cd include-what-you-use
+          sudo -u build makepkg -si --noconfirm
+          cd ..
+          rm -rf include-what-you-use
+      - uses: actions/checkout@v4
+      - name: Check code
+        run: |
+          cmake --preset code-check
+          cmake --build --preset code-check
