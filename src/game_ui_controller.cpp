@@ -32,9 +32,8 @@ game_ui_controller::game_ui_controller()
             emit timeout();
         }
     });
-    connect(this, &game_ui_controller::gameFinished, this, [this]() {
-        rank_list_storage::getInstance()->add_record({nickname, score});
-    });
+    connect(this, &game_ui_controller::gameFinished, this,
+            [this]() { rank_list_storage::getInstance()->add_record({nickname, score}); });
 }
 
 void game_ui_controller::start_game(QString nickname, int difficulty)

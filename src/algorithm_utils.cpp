@@ -7,7 +7,6 @@
 #include <simple_lexer.h>
 #include <stack>
 #include <unordered_map>
-#include <utility>
 
 static std::function<double(double, double)> possible_ops[] = {
     [](double a, double b) { return a + b; },
