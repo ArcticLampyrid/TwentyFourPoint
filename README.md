@@ -8,7 +8,7 @@ It initially started as a project for the "Programming Practice" course. It is n
 ## Build
 ### Windows
 1. Install `vcpkg` and configure environment variable `VCPKG_ROOT`.
-2. `vcpkg install qtdeclarative:x64-windows-static`
+2. `vcpkg install qtdeclarative:x64-windows-static qttranslations:x64-windows-static`
 3. Build with `cmake` and `ninja`, using presets defined in `CMakePresets.json`.
 
 ### Linux
